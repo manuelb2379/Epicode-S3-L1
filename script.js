@@ -59,11 +59,15 @@ const utenti = [
 
 /* ESERCIZIO 1 — Arrow function compatta
    Riscrivi questa funzione come arrow function in forma compatta:
-     function quadrato(n) { return n * n; }
+	 function quadrato(n) { return n * n; }
    Chiamala con quadrato(5) e stampa il risultato.
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+const quadrato = (n) => (n * n)
+
+console.log(quadrato(5));
 
 /* ESERCIZIO 2 — Destructuring di oggetto
    Crea un oggetto "persona" con almeno 4 properties (es. nome, cognome, eta, città).
@@ -73,6 +77,21 @@ const utenti = [
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+const persona = {
+	username: 'Manuel',
+	surname: 'Burgalassi',
+	age: 29,
+	city: 'San Vincenzo'
+}
+
+const { username } = persona;
+const { surname } = persona;
+const { age } = persona;
+
+console.log(username);
+console.log(surname);
+console.log(age);
+
 /* ESERCIZIO 3 — Destructuring nei parametri
    Scrivi una arrow function "riepilogo" che riceve un utente e ritorna
    "Nome Cognome (eta anni)" usando destructuring nei parametri.
@@ -80,6 +99,12 @@ const utenti = [
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+const riepilogo = ({ nome, cognome, eta }) => `${nome} ${cognome} (${eta} anni)`
+
+console.log(riepilogo(utenti[0]));
+console.log(riepilogo(utenti[1]));
+console.log(riepilogo(utenti[2]));
 
 /* ESERCIZIO 4 — Spread su array
    Crea numeri = [1, 2, 3].
@@ -89,6 +114,13 @@ const utenti = [
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+const numeri = [1, 2, 3];
+
+const newNumeri = [...numeri];
+newNumeri.push(99);
+
+console.log(newNumeri);
+
 /* ESERCIZIO 5 — Spread per concatenare
    frutti  = ["mela", "banana"]
    verdure = ["carota", "spinaci"]
@@ -96,6 +128,12 @@ const utenti = [
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const frutti = ["mela", "banana"];
+const verdure = ["carota", "spinaci"];
+
+const cibo = [...frutti, ...verdure];
+
+console.log(cibo)
 
 /* ESERCIZIO 6 — Spread su oggetto
    prodotto = { nome: "Cuffie", prezzo: 79.99 }
@@ -105,6 +143,15 @@ const utenti = [
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+const prodotto = {
+	nome: "Cuffie",
+	prezzo: 79.99
+};
+
+const product = {...prodotto, disponibile: 'true'};
+
+console.log(product);
+
 /* ESERCIZIO 7 — forEach
    Stampa tutti gli utenti nel formato "- Nome Cognome (città)".
    Esempio: "- Mario Rossi (Milano)"
@@ -112,12 +159,20 @@ const utenti = [
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+utenti.forEach((user) => {
+	console.log(`${user.nome} ${user.cognome} (${user.città})`)
+});
+
 /* ESERCIZIO 8 — map a stringhe
    Usa map per creare nomiCompleti = ["Mario Rossi", "Anna Bianchi", ...].
    Stampa l'array.
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+const nomiCompleti = utenti.map(({ nome, cognome }) => `${nome} ${cognome}`);
+
+console.log(nomiCompleti);
 
 /* ESERCIZIO 9 — map a oggetti
    Usa map per creare utentiPlus: array di oggetti dove ogni utente ha tutte
@@ -129,12 +184,23 @@ const utenti = [
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+const utentiPlus = utenti.map((utente) => ({
+	...utente,
+	descrizione: `${utente.nome} ${utente.cognome}, ${utente.città}`
+}));
+
+console.log(utentiPlus[0]);
+
 /* ESERCIZIO 10 — filter attivi
    Usa filter per ottenere solo gli utenti con attivo: true.
    Stampa l'array risultante.
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+const attivi = utenti.filter((utente) => utente.attivo === true);
+
+console.log(attivi);
 
 /* ESERCIZIO 11 — filter combinato
    Usa filter per ottenere solo gli utenti maggiorenni (eta >= 18) che vivono a Milano.
